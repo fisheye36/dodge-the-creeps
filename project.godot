@@ -18,6 +18,16 @@ _global_script_class_icons={
 config/name="Dodge the Creeps"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/width=480
+window/size/height=720
+window/handheld/orientation="portrait"
+
+[node]
+
+name_num_separator=2
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"
