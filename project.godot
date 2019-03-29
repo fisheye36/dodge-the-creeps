@@ -18,6 +18,10 @@ _global_script_class_icons={
 config/name="Dodge the Creeps"
 config/icon="res://icon.png"
 
+[debug]
+
+gdscript/completion/autocomplete_setters_and_getters=true
+
 [display]
 
 window/size/width=480
