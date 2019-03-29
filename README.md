@@ -1,2 +1,2 @@
-# dodge-the-creeps
-Dodge the Creeps - a simple 2D game made using Godot engine.
+# Dodge the Creeps!
+A simple 2D game made using Godot engine.
