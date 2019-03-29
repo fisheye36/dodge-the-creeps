@@ -1,15 +1,18 @@
 extends Area2D
 
 export var speed := 400
+
 var screen_size: Vector2
+var player_sprite: AnimatedSprite
 
 func _ready() -> void:
     screen_size = get_viewport().size
+    player_sprite = ($PlayerAnimatedSprite as AnimatedSprite)
 
 func _process(delta: float) -> void:
     var direction := _get_direction_from_user_input()
     var velocity := direction * speed
-    _toggle_animation(velocity)
+    _update_animation(velocity)
     _update_position(velocity, delta)
 
 func _get_direction_from_user_input() -> Vector2:
@@ -24,11 +27,25 @@ func _get_direction_from_user_input() -> Vector2:
         direction.x += 1
     return direction.normalized()
 
+func _update_animation(velocity: Vector2) -> void:
+    _toggle_animation(velocity)
+    _set_animation(velocity)
+
 func _toggle_animation(velocity: Vector2) -> void:
     if velocity.length() > 0:
-        $PlayerAnimatedSprite.play()
+        player_sprite.play()
     else:
-        $PlayerAnimatedSprite.stop()
+        player_sprite.stop()
+
+func _set_animation(velocity: Vector2) -> void:
+    if velocity.x != 0:
+        player_sprite.animation = 'right'
+        player_sprite.flip_v = false
+        player_sprite.flip_h = velocity.x < 0
+    elif velocity.y != 0:
+        player_sprite.animation = 'up'
+        player_sprite.flip_h = false
+        player_sprite.flip_v = velocity.y > 0
 
 func _update_position(velocity: Vector2, delta: float) -> void:
     position += velocity * delta
