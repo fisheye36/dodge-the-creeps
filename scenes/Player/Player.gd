@@ -2,12 +2,11 @@ extends Area2D
 
 export var speed := 400
 
-var screen_size: Vector2
-var player_sprite: AnimatedSprite
+onready var screen_size := get_viewport().size
+onready var player_sprite := ($PlayerAnimatedSprite as AnimatedSprite)
 
 func _ready() -> void:
-    screen_size = get_viewport().size
-    player_sprite = ($PlayerAnimatedSprite as AnimatedSprite)
+    hide()
 
 func _process(delta: float) -> void:
     var direction := _get_direction_from_user_input()
