@@ -1,25 +1,26 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://scenes/Mob/enemyFlyingAlt_1.png" type="Texture" id=1]
-[ext_resource path="res://scenes/Mob/enemyFlyingAlt_2.png" type="Texture" id=2]
-[ext_resource path="res://scenes/Mob/enemyWalking_1.png" type="Texture" id=3]
-[ext_resource path="res://scenes/Mob/enemyWalking_2.png" type="Texture" id=4]
-[ext_resource path="res://scenes/Mob/enemySwimming_1.png" type="Texture" id=5]
-[ext_resource path="res://scenes/Mob/enemySwimming_2.png" type="Texture" id=6]
+[ext_resource path="res://scenes/Mob/Mob.gd" type="Script" id=1]
+[ext_resource path="res://scenes/Mob/enemyFlyingAlt_1.png" type="Texture" id=2]
+[ext_resource path="res://scenes/Mob/enemyFlyingAlt_2.png" type="Texture" id=3]
+[ext_resource path="res://scenes/Mob/enemyWalking_1.png" type="Texture" id=4]
+[ext_resource path="res://scenes/Mob/enemyWalking_2.png" type="Texture" id=5]
+[ext_resource path="res://scenes/Mob/enemySwimming_1.png" type="Texture" id=6]
+[ext_resource path="res://scenes/Mob/enemySwimming_2.png" type="Texture" id=7]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 1 ), ExtResource( 2 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
 "loop": true,
 "name": "fly",
 "speed": 3.0
 }, {
-"frames": [ ExtResource( 3 ), ExtResource( 4 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 5 ) ],
 "loop": true,
 "name": "walk",
 "speed": 4.0
 }, {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ) ],
+"frames": [ ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": true,
 "name": "swim",
 "speed": 4.0
@@ -31,6 +32,7 @@ radius = 30.0
 [node name="Mob" type="RigidBody2D"]
 collision_mask = 0
 gravity_scale = 0.0
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -46,3 +48,4 @@ shape = SubResource( 2 )
 
 [node name="Visibility" type="VisibilityNotifier2D" parent="."]
 
+[connection signal="screen_exited" from="Visibility" to="." method="_on_screen_exited"]
