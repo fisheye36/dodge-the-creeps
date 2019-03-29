@@ -1,12 +1,24 @@
 extends Area2D
 
+signal hit
+
 export var speed := 400
 
 onready var screen_size := get_viewport().size
 onready var player_sprite := ($PlayerAnimatedSprite as AnimatedSprite)
+onready var player_hitbox := ($PlayerHitbox as CollisionShape2D)
+
+func spawn(coordinates: Vector2):
+    position = coordinates
+    player_hitbox.disabled = false
+    show()
 
 func _ready() -> void:
+    _despawn()
+
+func _despawn():
     hide()
+    player_hitbox.set_deferred('disabled', true)
 
 func _process(delta: float) -> void:
     var direction := _get_direction_from_user_input()
@@ -50,3 +62,7 @@ func _update_position(velocity: Vector2, delta: float) -> void:
     position += velocity * delta
     position.x = clamp(position.x, 0, screen_size.x)
     position.y = clamp(position.y, 0, screen_size.y)
+
+func _on_collision_with_enemy(body: PhysicsBody2D) -> void:
+    _despawn()
+    emit_signal('hit')
