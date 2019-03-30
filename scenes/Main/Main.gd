@@ -3,12 +3,12 @@ extends Node2D
 export (PackedScene) var MobNode: PackedScene
 export var mob_spawn_direction_variation := 45
 
-const RIGHT_ANGLE := PI / 2
+const RIGHT_ANGLE := PI / 2.0
 
 onready var mob_spawn_direction_variation_rads := deg2rad(mob_spawn_direction_variation as float)
-onready var score_timer := ($ScoreTimer as Timer)
-onready var mob_timer := ($MobTimer as Timer)
-onready var mob_spawn_location := ($MobPath/MobSpawnLocation as PathFollow2D)
+onready var score_timer := $ScoreTimer as Timer
+onready var mob_timer := $MobTimer as Timer
+onready var mob_spawn_location := $MobPath/MobSpawnLocation as PathFollow2D
 
 var score: int
 
@@ -56,5 +56,5 @@ func _set_mob_direction(mob: Mob) -> void:
 
 func _set_mob_velocity(mob: Mob) -> void:
     var mob_speed := mob.get_randomized_speed()
-    var velocity := Vector2(mob_speed, 0)
+    var velocity := Vector2(mob_speed, 0.0)
     mob.linear_velocity = velocity.rotated(mob.rotation)

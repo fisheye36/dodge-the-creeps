@@ -12,7 +12,7 @@ func _ready() -> void:
     _select_random_animation()
 
 func _select_random_animation() -> void:
-    var mob_sprite := ($MobAnimatedSprite as AnimatedSprite)
+    var mob_sprite := $MobAnimatedSprite as AnimatedSprite
     var animation_names := mob_sprite.frames.get_animation_names()
     mob_sprite.animation = animation_names[randi() % animation_names.size()]
 
