@@ -5,6 +5,9 @@ class_name Mob
 export var min_speed := 150
 export var max_speed := 250
 
+func get_randomized_speed() -> int:
+    return rand_range(min_speed, max_speed) as int
+
 func _ready() -> void:
     _select_random_animation()
 
