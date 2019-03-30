@@ -12,7 +12,7 @@ onready var player_hitbox := ($PlayerHitbox as CollisionShape2D)
 
 func spawn(coordinates: Vector2):
     position = coordinates
-    player_hitbox.disabled = false
+    player_hitbox.set_deferred('disabled', false)
     show()
 
 func _ready() -> void:
@@ -66,5 +66,6 @@ func _update_position(velocity: Vector2, delta: float) -> void:
     position.y = clamp(position.y, 0, screen_size.y)
 
 func _on_collision_with_enemy(body: PhysicsBody2D) -> void:
-    _despawn()
-    emit_signal('hit')
+    if body as Mob:
+        _despawn()
+        emit_signal('hit')
