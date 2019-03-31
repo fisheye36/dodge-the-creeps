@@ -9,11 +9,17 @@ onready var mob_spawn_direction_variation_rads := deg2rad(mob_spawn_direction_va
 onready var score_timer := $ScoreTimer as Timer
 onready var mob_timer := $MobTimer as Timer
 onready var mob_spawn_location := $MobPath/MobSpawnLocation as PathFollow2D
+onready var game_hud := $HUD as HUD
 
-var score: int
+var score: int setget set_score
+
+func set_score(new_score: int) -> void:
+    score = new_score
+    game_hud.update_score(score)
 
 func new_game() -> void:
-    score = 0
+    self.score = 0
+    game_hud.show_message('Get Ready')
     ($Player as Player).spawn(($StartPosition as Position2D).position)
     ($StartTimer as Timer).start()
 
@@ -23,13 +29,14 @@ func _ready() -> void:
 func _on_player_hit() -> void:
     score_timer.stop()
     mob_timer.stop()
+    game_hud.show_game_over()
 
 func _on_starting_delay_reached() -> void:
     score_timer.start()
     mob_timer.start()
 
 func _on_scoring_delay_reached() -> void:
-    score += 1
+    self.score += 1
 
 func _on_mob_spawning_delay_reached() -> void:
     var mob := _instantiate_mob()
