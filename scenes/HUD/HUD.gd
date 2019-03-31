@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+class_name HUD
+
 signal start_game
 
 export (String, MULTILINE) var initial_message := 'Dodge the Creeps!'
@@ -12,7 +14,8 @@ onready var start_button := $StartButton as Button
 
 func show_game_over() -> void:
     show_message('Game Over')
-    _show_initial_message_after_delay()
+    yield(message_timer, 'timeout')
+    show_message(initial_message, false)
     _enable_start_button_after_delay()
 
 func show_message(message: String, is_temporary := true) -> void:
@@ -20,10 +23,6 @@ func show_message(message: String, is_temporary := true) -> void:
     message_label.show()
     if is_temporary:
         message_timer.start()
-
-func _show_initial_message_after_delay() -> void:
-    yield(message_timer, 'timeout')
-    show_message('Dodge the Creeps!', false)
 
 func _enable_start_button_after_delay() -> void:
     yield(get_tree().create_timer(START_BUTTON_REENABLE_DELAY), 'timeout')
