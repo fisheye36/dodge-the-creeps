@@ -39,16 +39,26 @@ config/icon="res://icon.png"
 [debug]
 
 gdscript/completion/autocomplete_setters_and_getters=true
+gdscript/warnings/unused_class_variable=true
+gdscript/warnings/unsafe_property_access=true
+gdscript/warnings/unsafe_method_access=true
+gdscript/warnings/unsafe_cast=true
+gdscript/warnings/unsafe_call_argument=true
 
 [display]
 
 window/size/width=480
 window/size/height=720
+window/dpi/allow_hidpi=true
 window/handheld/orientation="portrait"
+
+[gui]
+
+timers/tooltip_delay_sec=0.25
 
 [node]
 
-name_num_separator=2
+name_num_separator=3
 
 [rendering]
 
