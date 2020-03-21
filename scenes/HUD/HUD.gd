@@ -1,39 +1,46 @@
+class_name HUD
 extends CanvasLayer
 
-class_name HUD
 
-signal start_game
-
-export (String, MULTILINE) var initial_message := 'Dodge the Creeps!'
+signal game_started
 
 const START_BUTTON_REENABLE_DELAY := 1.0
 
-onready var message_label := $MessageLabel as Label
-onready var message_timer := $MessageTimer as Timer
-onready var start_button := $StartButton as Button
+export (String, MULTILINE) var initial_message := 'Dodge the Creeps!'
+
+onready var _score_label := $ScoreLabel as Label
+onready var _message_label := $MessageLabel as Label
+onready var _start_button := $StartButton as Button
+onready var _message_timer := $MessageTimer as Timer
+
+
+func show_message(message: String, is_temporary := true) -> void:
+    _message_label.text = message
+    _message_label.show()
+    if is_temporary:
+        _message_timer.start()
+
 
 func show_game_over() -> void:
     show_message('Game Over')
-    yield(message_timer, 'timeout')
+    yield(_message_timer, 'timeout')
     show_message(initial_message, false)
     _enable_start_button_after_delay()
 
-func show_message(message: String, is_temporary := true) -> void:
-    message_label.text = message
-    message_label.show()
-    if is_temporary:
-        message_timer.start()
+
+func update_score(score: int) -> void:
+    _score_label.text = str(score)
+
 
 func _enable_start_button_after_delay() -> void:
     yield(get_tree().create_timer(START_BUTTON_REENABLE_DELAY), 'timeout')
-    start_button.show()
+    _start_button.show()
 
-func update_score(score: int) -> void:
-    ($ScoreLabel as Label).text = str(score)
-
-func _on_start_pressed() -> void:
-    start_button.hide()
-    emit_signal('start_game')
 
 func _on_message_timer_timeout() -> void:
-    message_label.hide()
+    _message_label.hide()
+
+
+func _on_start_pressed() -> void:
+    _start_button.hide()
+    emit_signal('game_started')

@@ -39,4 +39,4 @@ position = Vector2( -80, -80 )
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_spawning_delay_reached"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_scoring_delay_reached"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_starting_delay_reached"]
-[connection signal="start_game" from="HUD" to="." method="new_game"]
+[connection signal="game_started" from="HUD" to="." method="new_game"]
