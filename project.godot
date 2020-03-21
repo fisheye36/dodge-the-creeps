@@ -49,7 +49,6 @@ gdscript/warnings/unsafe_call_argument=true
 
 window/size/width=480
 window/size/height=720
-window/dpi/allow_hidpi=true
 window/handheld/orientation="portrait"
 
 [gui]
