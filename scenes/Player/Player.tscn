@@ -38,5 +38,4 @@ animation = "right"
 [node name="PlayerHitbox" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 6 )
 shape = SubResource( 2 )
-
 [connection signal="body_entered" from="." to="." method="_on_collision_with_enemy"]
