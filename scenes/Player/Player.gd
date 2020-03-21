@@ -65,7 +65,7 @@ func _update_position(velocity: Vector2, delta: float) -> void:
     position.x = clamp(position.x, 0.0, screen_size.x)
     position.y = clamp(position.y, 0.0, screen_size.y)
 
-func _on_collision_with_enemy(body: PhysicsBody2D) -> void:
+func _on_collision_with_enemy(body: Node) -> void:
     if body as Mob:
         _despawn()
         emit_signal('hit')
