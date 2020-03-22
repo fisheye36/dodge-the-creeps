@@ -24,6 +24,11 @@ func _ready() -> void:
     randomize()
 
 
+func _input(event: InputEvent) -> void:
+    if event.is_action_pressed('ui_cancel'):
+        get_tree().quit()
+
+
 func new_game() -> void:
     self.score = 0
     _game_hud.show_message('Get Ready')
