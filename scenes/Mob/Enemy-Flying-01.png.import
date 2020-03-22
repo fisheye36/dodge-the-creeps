@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/enemySwimming_1.png-67846e06233d205dca30cc2a97a2626e.stex"
+path="res://.import/Enemy-Flying-01.png-28b9e728d5ed67e0d8a9670a8af56e00.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/Mob/enemySwimming_1.png"
-dest_files=[ "res://.import/enemySwimming_1.png-67846e06233d205dca30cc2a97a2626e.stex" ]
+source_file="res://scenes/Mob/Enemy-Flying-01.png"
+dest_files=[ "res://.import/Enemy-Flying-01.png-28b9e728d5ed67e0d8a9670a8af56e00.stex" ]
 
 [params]
 

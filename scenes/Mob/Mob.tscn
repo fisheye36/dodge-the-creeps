@@ -1,12 +1,12 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/Mob/Mob.gd" type="Script" id=1]
-[ext_resource path="res://scenes/Mob/enemyFlyingAlt_1.png" type="Texture" id=2]
-[ext_resource path="res://scenes/Mob/enemyFlyingAlt_2.png" type="Texture" id=3]
-[ext_resource path="res://scenes/Mob/enemyWalking_1.png" type="Texture" id=4]
-[ext_resource path="res://scenes/Mob/enemyWalking_2.png" type="Texture" id=5]
-[ext_resource path="res://scenes/Mob/enemySwimming_1.png" type="Texture" id=6]
-[ext_resource path="res://scenes/Mob/enemySwimming_2.png" type="Texture" id=7]
+[ext_resource path="res://scenes/Mob/Enemy-Flying-01.png" type="Texture" id=2]
+[ext_resource path="res://scenes/Mob/Enemy-Flying-02.png" type="Texture" id=3]
+[ext_resource path="res://scenes/Mob/Enemy-Walking-01.png" type="Texture" id=4]
+[ext_resource path="res://scenes/Mob/Enemy-Walking-02.png" type="Texture" id=5]
+[ext_resource path="res://scenes/Mob/Enemy-Swimming-01.png" type="Texture" id=6]
+[ext_resource path="res://scenes/Mob/Enemy-Swimming-02.png" type="Texture" id=7]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
