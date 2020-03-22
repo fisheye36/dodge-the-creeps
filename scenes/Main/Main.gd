@@ -55,7 +55,7 @@ func _on_mob_spawning_delay_reached() -> void:
     var mob := _instantiate_mob()
     _set_mob_position_and_direction(mob)
     _set_mob_velocity(mob)
-    _game_hud.connect('game_started', mob, 'die')
+    _connect_hud_signal_to_mob('game_started', mob, 'die')
 
 
 func _instantiate_mob() -> Mob:
@@ -84,6 +84,12 @@ func _set_mob_velocity(mob: Mob) -> void:
     var mob_speed := mob.get_randomized_speed()
     var velocity := Vector2(mob_speed, 0.0)
     mob.linear_velocity = velocity.rotated(mob.rotation)
+
+
+func _connect_hud_signal_to_mob(signal_name: String, mob: Mob, mob_method: String) -> void:
+    var err := _game_hud.connect(signal_name, mob, mob_method)
+    if err:
+        printerr("Connecting signal '%s' from HUD to Mob method '%s' failed" % [signal_name, mob_method])
 
 
 func _on_player_hit() -> void:
