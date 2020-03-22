@@ -4,6 +4,9 @@ extends Area2D
 
 signal hit
 
+const HORIZONTAL_ANIM_NAME = 'right'
+const VERTICAL_ANIM_NAME = 'up'
+
 export var speed := 400
 
 onready var _player_sprite := $PlayerAnimatedSprite as AnimatedSprite
@@ -26,7 +29,12 @@ func _process(delta: float) -> void:
 func spawn(coordinates: Vector2):
     position = coordinates
     _player_hitbox.set_deferred('disabled', false)
+    _reset_animations()
     show()
+
+
+func _is_only_node_in_scene() -> bool:
+    return get_parent() == get_tree().get_root()
 
 
 func _despawn():
@@ -63,11 +71,11 @@ func _toggle_animation(velocity: Vector2) -> void:
 
 func _set_animation(velocity: Vector2) -> void:
     if velocity.x != 0.0:
-        _player_sprite.animation = 'right'
+        _player_sprite.animation = HORIZONTAL_ANIM_NAME
         _player_sprite.flip_v = false
         _player_sprite.flip_h = velocity.x < 0.0
     elif velocity.y != 0.0:
-        _player_sprite.animation = 'up'
+        _player_sprite.animation = VERTICAL_ANIM_NAME
         _player_sprite.flip_h = false
         _player_sprite.flip_v = velocity.y > 0.0
 
@@ -78,8 +86,11 @@ func _update_position(velocity: Vector2, delta: float) -> void:
     position.y = clamp(position.y, 0.0, _screen_size.y)
 
 
-func _is_only_node_in_scene() -> bool:
-    return get_parent() == get_tree().get_root()
+func _reset_animations() -> void:
+    _player_sprite.animation = HORIZONTAL_ANIM_NAME
+    _player_sprite.frame = 0
+    _player_sprite.flip_h = false
+    _player_sprite.flip_v = false
 
 
 func _on_collision_with_enemy(body: Node) -> void:
