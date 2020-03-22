@@ -4,7 +4,7 @@ extends CanvasLayer
 
 signal game_started
 
-const START_BUTTON_REENABLE_DELAY := 1.0
+const START_BUTTON_REENABLE_DELAY = 1.0
 
 export (String, MULTILINE) var initial_message := 'Dodge the Creeps!'
 
