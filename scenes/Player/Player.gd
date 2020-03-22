@@ -83,6 +83,6 @@ func _is_only_node_in_scene() -> bool:
 
 
 func _on_collision_with_enemy(body: Node) -> void:
-    if body as Mob:
+    if body is Mob:
         _despawn()
         emit_signal('hit')

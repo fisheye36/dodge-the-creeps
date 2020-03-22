@@ -7,8 +7,8 @@ export (PackedScene) var MobNode: PackedScene
 export var mob_spawn_direction_variation := 45
 
 var score: int setget set_score
+var _mob_spawn_direction_variation_rads := deg2rad(mob_spawn_direction_variation as float)
 
-onready var _mob_spawn_direction_variation_rads := deg2rad(mob_spawn_direction_variation as float)
 onready var _player_spawn_position := ($StartPosition as Position2D).position
 onready var _player := $Player as Player
 onready var _mob_timer := $MobTimer as Timer
