@@ -12,7 +12,8 @@ onready var _screen_size := get_viewport().size
 
 
 func _ready() -> void:
-    _despawn()
+    if not _is_only_node_in_scene():
+        _despawn()
 
 
 func _process(delta: float) -> void:
@@ -75,6 +76,10 @@ func _update_position(velocity: Vector2, delta: float) -> void:
     position += velocity * delta
     position.x = clamp(position.x, 0.0, _screen_size.x)
     position.y = clamp(position.y, 0.0, _screen_size.y)
+
+
+func _is_only_node_in_scene() -> bool:
+    return get_parent() == get_tree().get_root()
 
 
 func _on_collision_with_enemy(body: Node) -> void:
