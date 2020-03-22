@@ -35,15 +35,17 @@ func _despawn():
 
 func _get_direction_from_user_input() -> Vector2:
     var direction := Vector2()
-    if Input.is_action_pressed('ui_up'):
-        direction.y -= 1.0
-    if Input.is_action_pressed('ui_down'):
-        direction.y += 1.0
-    if Input.is_action_pressed('ui_left'):
-        direction.x -= 1.0
-    if Input.is_action_pressed('ui_right'):
-        direction.x += 1.0
+    direction.x = _get_x_direction_component_from_user_input()
+    direction.y = _get_y_direction_component_from_user_input()
     return direction.normalized()
+
+
+func _get_x_direction_component_from_user_input() -> float:
+    return Input.get_action_strength('ui_right') - Input.get_action_strength('ui_left')
+
+
+func _get_y_direction_component_from_user_input() -> float:
+    return Input.get_action_strength('ui_down') - Input.get_action_strength('ui_up')
 
 
 func _update_animation(velocity: Vector2) -> void:
