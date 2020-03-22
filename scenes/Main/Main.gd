@@ -16,6 +16,8 @@ onready var _score_timer := $ScoreTimer as Timer
 onready var _start_timer := $StartTimer as Timer
 onready var _mob_spawn_location := $MobPath/MobSpawnLocation as PathFollow2D
 onready var _game_hud := $HUD as HUD
+onready var _music := $Sounds/Music as AudioStreamPlayer
+onready var _death_sound := $Sounds/DeathSound as AudioStreamPlayer
 
 
 func _ready() -> void:
@@ -27,6 +29,7 @@ func new_game() -> void:
     _game_hud.show_message('Get Ready')
     _player.spawn(_player_spawn_position)
     _start_timer.start()
+    _music.play()
 
 
 func set_score(new_score: int) -> void:
@@ -82,3 +85,5 @@ func _on_player_hit() -> void:
     _score_timer.stop()
     _mob_timer.stop()
     _game_hud.show_game_over()
+    _music.stop()
+    _death_sound.play()

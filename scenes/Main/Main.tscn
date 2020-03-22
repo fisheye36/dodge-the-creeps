@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/Main/Main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Mob/Mob.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/HUD/HUD.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/Main/Game-Over.wav" type="AudioStream" id=5]
+[ext_resource path="res://scenes/Main/House-In-a-Forest.ogg" type="AudioStream" id=6]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -43,6 +45,15 @@ curve = SubResource( 1 )
 position = Vector2( -80, -80 )
 
 [node name="HUD" parent="." instance=ExtResource( 4 )]
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="Music" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 6 )
+volume_db = -10.0
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 5 )
 [connection signal="hit" from="Player" to="." method="_on_player_hit"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_spawning_delay_reached"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_scoring_delay_reached"]
