@@ -47,6 +47,7 @@ func _on_mob_spawning_delay_reached() -> void:
     var mob := _instantiate_mob()
     _set_mob_position_and_direction(mob)
     _set_mob_velocity(mob)
+    _game_hud.connect('game_started', mob, 'die')
 
 
 func _instantiate_mob() -> Mob:

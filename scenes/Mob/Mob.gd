@@ -16,12 +16,12 @@ func get_randomized_speed() -> int:
     return rand_range(min_speed, max_speed) as int
 
 
+func die() -> void:
+    queue_free()
+
+
 func _play_random_animation() -> void:
     var animation_names := _mob_sprite.frames.get_animation_names()
     var random_animation_index := randi() % animation_names.size()
     var random_animation := animation_names[random_animation_index]
     _mob_sprite.play(random_animation)
-
-
-func _on_screen_exited() -> void:
-    queue_free()

@@ -47,4 +47,4 @@ rotation = 1.5708
 shape = SubResource( 2 )
 
 [node name="Visibility" type="VisibilityNotifier2D" parent="."]
-[connection signal="screen_exited" from="Visibility" to="." method="_on_screen_exited"]
+[connection signal="screen_exited" from="Visibility" to="." method="die"]
